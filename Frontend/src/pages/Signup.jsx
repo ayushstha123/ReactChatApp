@@ -1,10 +1,11 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Signup = () => {
   return (
     <div>
 
-      <div class= "h-screen md:flex">
+      <div class= " h-screen md:flex">
         <div
           class="relative overflow-hidden md:flex w-1/2 bg-gradient-to-tr from-red-500 to-red-900 i justify-around items-center hidden">
           <div>
@@ -16,11 +17,27 @@ const Signup = () => {
           <div class="absolute -top-40 -right-0 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
           <div class="absolute -top-20 -right-20 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
         </div>
-        <div class="flex md:w-1/2 h-screen justify-center  pt-12 items-center bg-white">
+        <div class="flex md:w-1/2 px-5 h-screen justify-center pt-16 items-center bg-white">
           <form class="bg-white">
-            <h1 class="text-gray-800 font-bold text-3xl mb-4">Sign up</h1>
- 
+            
+            <h1 class="text-gray-800 font-bold text-3xl mb-5">Sign up</h1>
+            <div class="flex items-center space-x-6">
+    <div class="shrink-0 items-center my-4">
+      <img id='preview_img' class="h-16 w-16 object-cover rounded-full" src="https://lh3.googleusercontent.com/a-/AFdZucpC_6WFBIfaAbPHBwGM9z8SxyM1oV4wB4Ngwp_UyQ=s96-c" alt="Current profile photo" />
+    </div>
+    <label class="block">
+      <span class="sr-only">Choose profile photo</span>
+      <input type="file"accept='image/jpeg'  onchange="loadFile(event)" class="block w-full text-sm text-slate-500
+        file:mr-4 file:py-2 file:px-4
+        file:rounded-full file:border-0
+        file:text-sm file:font-semibold
+        file:bg-violet-50 file:text-violet-700
+        hover:file:bg-violet-100
+      "/>
+    </label>
+  </div>
             <div class="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
+              
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20"
                 fill="currentColor">
                 <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
@@ -53,8 +70,8 @@ const Signup = () => {
               </svg>
               <input class="pl-2 outline-none border-none" type="text" name="" id="" placeholder="Password" />
             </div>
-            <button type="submit" class="block w-full bg-indigo-600 mt-4 py-2 rounded-2xl text-white font-semibold mb-2">Login</button>
-            <span class="text-sm ml-2 hover:text-blue-500 cursor-pointer">Forgot Password ?</span>
+            <button type="submit" class="block w-full bg-indigo-600 mt-4 py-2 rounded-2xl text-white font-semibold mb-2">Register</button>
+            <span class="text-sm ml-2">Already have an account? <Link className='cursor-pointer text-blue-700 underline' to="/login">Login</Link></span>
           </form>
         </div>
       </div>
