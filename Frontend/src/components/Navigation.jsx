@@ -11,7 +11,7 @@ const Navigation = () => {
   return (
     <div>
       <nav class="fixed w-full z-20 top-0 left-0 bg-black border-gray-200 px-4">
-        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto ">
           <Link to="/" class="flex items-center">
             <a class='text-2xl text-white bx bx-message-dots'></a>
             <span class="self-center text-white text-2xl font-semibold whitespace-nowrap p-2"> Chitchat</span>
