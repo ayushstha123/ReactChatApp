@@ -1,3 +1,4 @@
+import { upload } from '@testing-library/user-event/dist/upload';
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
@@ -23,8 +24,18 @@ else{
 }
 }
 
+async function uploadImage(){
+  const data=new FormData();
+  data.append('file',image);
+  data.append('upload_preset','d1a490m345789!as45d')
+}
+
+
+
   function handleSubmit(e) {
     e.preventDefault();
+    if(!image) return alert("please upload your profile picture");
+    const url= await uploadImage(image);
     console.log(email);
   }
 
