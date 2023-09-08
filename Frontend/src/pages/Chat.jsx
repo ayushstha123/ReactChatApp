@@ -8,7 +8,7 @@ const Chat = () => {
       <div class="flex h-screen text-gray-800 antialiased">
         <div class="flex h-full w-full flex-col md:flex-row overflow-x-hidden">
           {/* nav */}
-          <div class="bg-gray-800 p-5 md:shrink-0">
+          <div class="bg-gray-800 p-5 md:shrink-0 md:overflow-y-auto">
             <Sidebar />
           </div>
 

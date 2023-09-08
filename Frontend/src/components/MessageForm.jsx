@@ -34,7 +34,24 @@ const MessageForm = () => {
                 </div>
               </div>
             </div>
+            <div class="col-start-1 col-end-8 rounded-lg p-3">
+              <div class="flex flex-row items-center">
+                <div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-indigo-500">A</div>
+                <div class="relative ml-3 rounded-xl bg-white px-4 py-2 text-sm shadow">
+                  <div>Lorem ipsum dolor sit amet !</div>
+                </div>
+              </div>
+            </div>
 
+            <div class="col-start-1 col-end-8 rounded-lg p-3">
+              <div class="flex flex-row items-center">
+                <div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-indigo-500">A</div>
+                <div class="relative ml-3 rounded-xl bg-white px-4 py-2 text-sm shadow">
+                  <div>Lorem ipsum dolor sit amet !</div>
+                </div>
+              </div>
+            </div>
+            
           </div>
        
       </div>
