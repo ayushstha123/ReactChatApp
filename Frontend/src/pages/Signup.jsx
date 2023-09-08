@@ -9,13 +9,19 @@ const Signup = () => {
 
 //for image uploads
 const [image,setImage]=useState(null);
-const [uploadImage,setUploadImage]=useState(false);
+const [uploadingImage,setUploadingImage]=useState(false);
 const [previewImage,setPreviewImage]=useState(null);
 
 
+
 function validateImage(e){
-const file=e.target.files[0];
-if(file>1048576){//1mb
+if(e.target.files.length===0){
+  return;
+}
+
+let file= e.target.files[0];
+
+if(file.size >= 1048576){//1mb
 return alert("file cannot be more than 1mb");
 }
 else{
@@ -24,19 +30,32 @@ else{
 }
 }
 
+
 async function uploadImage(){
   const data=new FormData();
-  data.append('file',image);
-  data.append('upload_preset','d1a490m345789!as45d')
+  data.append('file', image);
+  data.append('upload_preset','d1a490m345789!as45d');
+  try{
+    setUploadingImage(true);
+    let res=await fetch('https://api.cloudinary.com/v1_1/dzjbpfzks/image/upload',{
+      method:"post",
+      body: data,
+    });
+    const urlData=await res.json();
+    setUploadingImage(false);
+    return urlData.url;
+  }catch(error){
+    setUploadingImage(false);
+    console.log(error);
+
+  }
 }
 
-
-
-  function handleSubmit(e) {
+ async function handleSubmit(e) {
     e.preventDefault();
     if(!image) return alert("please upload your profile picture");
     const url= await uploadImage(image);
-    console.log(email);
+    console.log(url);
   }
 
   return (
@@ -60,7 +79,7 @@ async function uploadImage(){
             <h1 class="text-gray-800 font-bold text-3xl mb-5">Sign up</h1>
             <div class="flex items-center space-x-6">
               <div class="shrink-0 items-center my-4">
-                <img id='preview_img' class="h-16 w-16 object-cover rounded-full" src={ previewImage || "https://lh3.googleusercontent.com/a-/AFdZucpC_6WFBIfaAbPHBwGM9z8SxyM1oV4wB4Ngwp_UyQ=s96-c"} alt="Current profile photo" />
+                <img id='preview_img' class="h-16 w-16 object-cover justify-center bg-red-300 rounded-full " src={ previewImage || "https://cdn3d.iconscout.com/3d/premium/thumb/user-3711850-3105265.png"} alt="Current profile photo" />
               </div>
               <label class="block">
                 <span class="sr-only">Choose profile photo</span>
@@ -100,7 +119,7 @@ async function uploadImage(){
               </svg>
               <input class="pl-2 outline-none border-none" type="text" name="" id="" placeholder="Password" onChange={(e) => setPassword(e.target.value)} value={password} />
             </div>
-            <button type="submit" class="block w-full bg-indigo-600 mt-4 py-2 rounded-2xl text-white font-semibold mb-2">Register</button>
+            <button type="submit" class="block w-full bg-indigo-600 mt-4 py-2 rounded-2xl text-white font-semibold mb-2">{uploadingImage ? 'Signing you up...': 'Sign up'}</button>
             <span class="text-sm ml-2">Already have an account? <Link className='cursor-pointer text-blue-700 underline' to="/login">Login</Link></span>
           </form>
         </div>
