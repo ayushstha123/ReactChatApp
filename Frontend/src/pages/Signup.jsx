@@ -1,11 +1,13 @@
 import { upload } from '@testing-library/user-event/dist/upload';
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useSignupUserMutation } from '../services/appApi';
 
 const Signup = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
+const [signupUser,{isLoading,error}]=useSignupUserMutation();
 
 //for image uploads
 const [image,setImage]=useState(null);
@@ -56,6 +58,13 @@ async function uploadImage(){
     if(!image) return alert("please upload your profile picture");
     const url= await uploadImage(image);
     console.log(url);
+
+    //signup the user
+    signupUser({name,email,password,img:url}).then(({data})=>{
+      if(data){
+        console.log(data);
+      }
+    })
   }
 
   return (

@@ -1,5 +1,7 @@
 const express=require('express'); // importing module express
 const app=express();// your are creating an express application and storing it in app
+require('./connection');
+const userRoutes=require('./routes/userRoutes');
 
 const rooms=['general','tech','finance','crypto'];// array of rooms
 const cors=require('cors');// importing cors module
@@ -8,6 +10,7 @@ const cors=require('cors');// importing cors module
 app.use(express.urlencoded({extended:true}));// this middleware parses incoming request with url encoded payloads
 app.use(express.json());//this middleware parses incoming request with json payloads
 app.use(cors());// cross origin resourse sharing 
+app.use('/users',userRoutes);
 
 //creating a server
 const server=require('http').createServer(app);
